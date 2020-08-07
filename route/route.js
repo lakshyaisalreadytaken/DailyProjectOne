@@ -78,7 +78,7 @@ module.exports = function(app, res, res) {
         })
     })
 
-    app.get("/listItems", function(req, res) {
+    app.post("/listItems", function(req, res) {
         Item.find(function(error, data){
             if(error) return res.send(errorMessage);
             if(data.length == 0) return res.send(noData)
@@ -102,8 +102,8 @@ module.exports = function(app, res, res) {
         })
     })
 
-    app.get("/myOrders/:user_id", function(req, res) {
-        let user_id = (req.params.user_id) ? req.params.user_id : "";
+    app.post("/myOrders", function(req, res) {
+        let user_id = (req.body.user_id) ? req.body.user_id : "";
 
         Order.aggregate(
             [
