@@ -13,7 +13,7 @@ const config = multer.diskStorage({
     }, 
     filename: function(req, file, next){
         let ext = file.originalname.substring(file.originalname.lastIndexOf("."));
-        next(null, Date.now()  + ext);
+        next(null, Date.now() + ext);
     }
 });
 
@@ -22,7 +22,7 @@ const upload = multer({ storage: config });
 let errorMessage = { error: true, message: "Something went wrong, please try again later.", error: {} };
 let noData       = { error: false, message: "No data found", data: [] };
 
-module.exports = function(app, res, res) {
+module.exports = function(app, req, res) {
     
     app.post("/register", (req, res) => {
         let name     = (req.body.name)     ? req.body.name     : "",
